@@ -12,6 +12,12 @@ const Image = ({ src, className, width, height, alt }) => {
       alt={alt}
       width={width}
       height={height}
+      transformation={[
+        {
+          width: width,
+          height: height,
+        },
+      ]}
     />
   );
 };

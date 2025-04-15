@@ -3,6 +3,8 @@
 @import 'tailwindcss';
 
 @theme {
+  --color-primary: oklch(0.518 0.235 323.949);
+  --color-secondary: oklch(0.591 0.293 322.896);
   --font-display: 'Poppins';
 }
 
@@ -28,4 +30,8 @@
 
 .ql-editor {
   border: none !important;
+}
+
+.arrow-btn {
+  @apply absolute top-1/2 transform -translate-y-1/2 p-2 rounded-full shadow;
 }

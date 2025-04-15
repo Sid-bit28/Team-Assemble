@@ -5,12 +5,12 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { ClerkProvider } from '@clerk/clerk-react';
 
 import HomePage from './routes/Homepage.jsx';
-import PostListPage from './routes/PostListPage.jsx';
 import SinglePostPage from './routes/SinglePostPage.jsx';
 import Write from './routes/Write.jsx';
 import LoginPage from './routes/LoginPage.jsx';
 import RegisterPage from './routes/RegisterPage.jsx';
 import MainLayout from './layouts/MainLayout.jsx';
+import PostListPage from './routes/PostListPage.jsx';
 
 // Import your Publishable Key
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY;

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import Image from './Image';
 import { Link } from 'react-router-dom';
@@ -15,6 +15,26 @@ const Navbar = () => {
   const toggleMenu = () => {
     setOpen(prev => !prev);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setOpen(true); // Always show menu on large screen.
+      } else {
+        setOpen(false); // Hide menu by default on small screens.
+      }
+    };
+    // Set initial state based on screen size
+    handleResize();
+
+    // Listen to resize events
+    window.addEventListener('resize', handleResize);
+
+    // Cleanup listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
@@ -57,15 +77,23 @@ const Navbar = () => {
         </button>
         {/* Mobile Link List */}
         <div
-          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 transition-all ease-in-out backdrop-blur-sm gap-8 font-medium text-lg ${
+          className={`w-full h-screen flex flex-col items-center justify-center absolute top-16 transition-all ease-in-out backdrop-blur-[10px] gap-8 z-10 font-medium text-lg ${
             open ? '-right-0' : '-right-[100%]'
           }`}
         >
-          <Link to="/">Home</Link>
-          <Link to="/">Trending</Link>
-          <Link to="/">Most Popular</Link>
-          <Link to="/">About</Link>
-          <Link to="/">
+          <Link to="/" className="menu-item">
+            Home
+          </Link>
+          <Link to="/" className="menu-item">
+            Trending
+          </Link>
+          <Link to="/" className="menu-item">
+            Most Popular
+          </Link>
+          <Link to="/" className="menu-item">
+            About
+          </Link>
+          <Link to="/" className="menu-item">
             <button className="py-2 px-4 rounded-3xl bg-violet-600">
               Login👋
             </button>
@@ -74,10 +102,18 @@ const Navbar = () => {
       </div>
       {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8 xl:gap-12 font-medium">
-        <Link to="/">Home</Link>
-        <Link to="/">Trending</Link>
-        <Link to="/">Most Popular</Link>
-        <Link to="/">About</Link>
+        <Link to="/" className="menu-item">
+          Home
+        </Link>
+        <Link to="/" className="menu-item">
+          Trending
+        </Link>
+        <Link to="/" className="menu-item">
+          Most Popular
+        </Link>
+        <Link to="/" className="menu-item">
+          About
+        </Link>
         <SignedOut>
           <Link to="/login">
             <button className="py-2 px-4 rounded-3xl bg-violet-600">

@@ -20,43 +20,16 @@ export const CATEGORIES = [
   },
   {
     id: 4,
-    category: 'Outsites',
-  },
-  {
-    id: 5,
     category: 'Townhall',
   },
   {
-    id: 6,
+    id: 5,
     category: 'DIY',
-  },
-  {
-    id: 7,
-    category: 'other',
-  },
-  {
-    id: 8,
-    category: 'other1',
-  },
-  {
-    id: 9,
-    category: 'other2',
-  },
-  {
-    id: 10,
-    category: 'other2',
-  },
-  {
-    id: 11,
-    category: 'other2',
   },
 ];
 
 const Categories = () => {
-  const [emblaRef, emblaApi] = useEmblaCarousel(
-    { loop: true, align: 'start' },
-    [Autoplay()]
-  );
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
 
@@ -103,7 +76,7 @@ const Categories = () => {
 
       {/*Navigation Buttons*/}
       <button
-        className={`arrow-btn -left-5  ${
+        className={`arrow-btn -left-3  ${
           !canScrollPrev ? 'opacity-50 cursor-not-allowed' : ''
         }`}
         onClick={() => emblaApi && emblaApi.scrollPrev()}
@@ -113,7 +86,7 @@ const Categories = () => {
       </button>
 
       <button
-        className={`arrow-btn -right-5  ${
+        className={`arrow-btn -right-3  ${
           !canScrollNext ? 'opacity-50 cursor-not-allowed' : ''
         }`}
         onClick={() => emblaApi && emblaApi.scrollNext()}

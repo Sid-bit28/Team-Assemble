@@ -1,0 +1,24 @@
+{
+  "name": "TeamAssemble",
+  "version": "1.0.0",
+  "description": "Team Assemble backend",
+  "homepage": "https://github.com/Sid-bit28/Team-Assemble#readme",
+  "bugs": {
+    "url": "https://github.com/Sid-bit28/Team-Assemble/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sid-bit28/Team-Assemble.git"
+  },
+  "license": "ISC",
+  "author": "Siddarth",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --env-file .env --watch index.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.13.2"
+  }
+}

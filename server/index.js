@@ -6,6 +6,7 @@ const { connectDB } = require('./lib/connectDB');
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(express.json());
 
 // app.get('/test', (req, res) => {
 //   res.status(200).send('It works.');

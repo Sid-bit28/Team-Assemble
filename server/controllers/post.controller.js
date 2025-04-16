@@ -1,40 +1,24 @@
 const postModel = require('../models/post.model');
 
 const getPosts = async (req, res) => {
-  try {
-    const posts = await postModel.find();
-    res.status(200).json(posts);
-  } catch (error) {
-    console.error(error);
-  }
+  const posts = await postModel.find();
+  res.status(200).json(posts);
 };
 
 const getPost = async (req, res) => {
-  try {
-    const post = await postModel.findOne({ slug: req.params.slug });
-    res.status(200).json(post);
-  } catch (error) {
-    console.error(error);
-  }
+  const post = await postModel.findOne({ slug: req.params.slug });
+  res.status(200).json(post);
 };
 
 const createPost = async (req, res) => {
-  try {
-    const newPost = new postModel(req.body);
-    const post = await newPost.save();
-    res.status(201).json(post);
-  } catch (error) {
-    console.error(error);
-  }
+  const newPost = new postModel(req.body);
+  const post = await newPost.save();
+  res.status(201).json(post);
 };
 
 const deletePost = async (req, res) => {
-  try {
-    const post = await postModel.findByIdAndDelete(req.params.id);
-    res.status(200).json('Post has been deleted.');
-  } catch (error) {
-    console.error(error);
-  }
+  const post = await postModel.findByIdAndDelete(req.params.id);
+  res.status(200).json('Post has been deleted.');
 };
 
 module.exports = {

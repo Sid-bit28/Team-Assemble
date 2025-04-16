@@ -7,10 +7,17 @@ import {
   SignedOut,
   SignInButton,
   UserButton,
+  useAuth,
 } from '@clerk/clerk-react';
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+
+  const { getToken } = useAuth();
+
+  useEffect(() => {
+    getToken().then(token => console.log(token));
+  });
 
   const toggleMenu = () => {
     setOpen(prev => !prev);

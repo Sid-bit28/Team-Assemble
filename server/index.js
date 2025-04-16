@@ -17,13 +17,6 @@ app.use(clerkMiddleware());
 app.use('/webhooks', webHookRouter);
 app.use(express.json());
 
-// app.get('/test', (req, res) => {
-//   res.status(200).send('It works.');
-// });
-
-// app.use('/', (req, res) => {
-//   res.send('Welcome to the Team Assemble API.');
-// });
 app.use('/users', userRouter);
 app.use('/posts', postRouter);
 app.use('/comments', commentRouter);

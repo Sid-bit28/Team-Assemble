@@ -109,7 +109,7 @@ const SinglePostPage = () => {
                   height="24"
                   fill="none"
                   viewBox="0 0 24 24"
-                  class="cg alw"
+                  className="cg alw"
                 >
                   <path
                     fill="currentColor"
@@ -124,7 +124,7 @@ const SinglePostPage = () => {
                   height="24"
                   fill="none"
                   viewBox="0 0 24 24"
-                  class="cg alw"
+                  className="cg alw"
                 >
                   <path
                     fill="currentColor"

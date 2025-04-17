@@ -4,8 +4,18 @@ const postModel = require('../models/post.model');
 const userModel = require('../models/user.model');
 
 const getPosts = async (req, res) => {
-  const posts = await postModel.find();
-  res.status(200).json(posts);
+  const page = parseInt(req.query.page) || 1;
+  const limit = parseInt(req.query.limit) || 2;
+
+  const posts = await postModel
+    .find()
+    .populate('user', 'username')
+    .limit(limit)
+    .skip((page - 1) * limit);
+
+  const totalPosts = await postModel.countDocuments();
+  const hasMore = page * limit < totalPosts;
+  res.status(200).json({ posts, hasMore });
 };
 
 const getPost = async (req, res) => {

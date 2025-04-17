@@ -7,16 +7,15 @@ import { toast } from 'react-toastify';
 import Comment from './Comment';
 
 const fetchComments = async postId => {
-  const { user } = useUser();
   const res = await axios.get(
     `${import.meta.env.VITE_API_URI}/comments/${postId}`
   );
-  console.log(res.data);
   return res.data;
 };
 
 const Comments = ({ postId }) => {
   const { getToken } = useAuth();
+  const { user } = useUser();
   const { isPending, error, data } = useQuery({
     queryKey: ['comments', postId],
     queryFn: () => fetchComments(postId),
@@ -42,6 +41,7 @@ const Comments = ({ postId }) => {
       toast.error(err.response.data);
     },
   });
+
   const queryClient = useQueryClient();
 
   if (isPending) {

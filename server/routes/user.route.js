@@ -1,9 +1,13 @@
 const express = require('express');
 
+const {
+  getUserSavedPost,
+  savePost,
+} = require('../controllers/user.controller');
+
 const router = express.Router();
 
-router.get('/anothertest', (req, res) => {
-  res.status(200).send('User route');
-});
+router.get('/saved', getUserSavedPost);
+router.patch('/save', savePost);
 
 module.exports = router;

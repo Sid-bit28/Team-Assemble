@@ -56,7 +56,7 @@ const SinglePostPage = () => {
       {/* content */}
       <div className="flex flex-col md:flex-row gap-8">
         {/* text */}
-        <div className="lg:text-lg flex flex-col gap-6 text-justify">
+        <div className="lg:text-lg flex flex-grow gap-6 text-justify">
           {data.content}
         </div>
         {/* menu */}
@@ -107,7 +107,7 @@ const SinglePostPage = () => {
               </Link>
             </div>
           </div>
-          <PostMenuActions />
+          <PostMenuActions post={data} />
           <h1 className="mt-8 mb-4 text-sm font-medium">Categories</h1>
           <div className="flex flex-col gap-2 text-sm">
             <Link className="underline" to="/">

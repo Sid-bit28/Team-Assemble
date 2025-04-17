@@ -11,7 +11,6 @@ const PostMenuActions = () => {
           height="24"
           fill="none"
           viewBox="0 0 24 24"
-          className="bl"
         >
           <path
             fill="#000"
@@ -27,7 +26,6 @@ const PostMenuActions = () => {
           height="24"
           fill="none"
           viewBox="0 0 24 24"
-          class="md me"
         >
           <path
             stroke="currentColor"

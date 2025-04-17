@@ -125,7 +125,7 @@ const SinglePostPage = () => {
         </div>
       </div>
       <hr className="w-full my-5 mx-auto border border-gray-200" />
-      <Comments />
+      <Comments postId={data._id} />
     </div>
   );
 };

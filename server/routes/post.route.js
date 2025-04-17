@@ -5,9 +5,12 @@ const {
   getPost,
   createPost,
   deletePost,
+  uploadAuth,
 } = require('../controllers/post.controller');
 
 const router = express.Router();
+
+router.get('/upload-auth', uploadAuth);
 
 router.get('/', getPosts);
 router.get('/:slug', getPost);

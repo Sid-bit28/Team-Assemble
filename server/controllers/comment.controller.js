@@ -30,9 +30,16 @@ const addComment = async (req, res) => {
 
 const deleteComment = async (req, res) => {
   const clerkUserId = req.auth.userId;
-  const postId = req.params.postId;
+  const id = req.params.id;
   if (!clerkUserId) {
     return res.status(401).json('Not Authenticated.');
+  }
+
+  const role = req.auth.sessionClaims?.metadata?.role || 'user';
+
+  if (role === 'admin') {
+    await commentModel.findByIdAndDelete(req.params.id);
+    return res.status(200).json('Comment deleted by admin.');
   }
 
   const user = await userModel.findOne({ clerkUserId });

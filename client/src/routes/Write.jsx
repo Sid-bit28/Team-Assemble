@@ -83,20 +83,26 @@ const Write = () => {
                 type="button"
                 className="w-max p-2 shadow-md rounded-xl text-sm text-[#B3B2B0]"
               >
-                {progress > 0 && progress < 100
-                  ? `Uploading..${progress}`
-                  : 'Add Cover Image'}
+                {progress === 0
+                  ? 'Add Cover Image'
+                  : progress > 0 && progress < 100
+                  ? `Uploading...`
+                  : `${cover.filePath}`}
               </button>
             </Upload>
           </div>
-          <button
-            type="submit"
-            disabled={mutation.isPending || (progress > 0 && progress < 100)}
-            className="rounded-full text-white bg-[#1B8817] hover:bg-green-800 font-medium px-5 cursor-pointer disabled:bg-green-300 disabled:cursor-not-allowed h-10"
-          >
-            {mutation.isPending ? 'Publishing...' : 'Publish'}
-          </button>
-          {mutation.isError && <span>{mutation.error.message}</span>}
+          <div className="flex flex-col gap-1">
+            <button
+              type="submit"
+              disabled={mutation.isPending || (progress > 0 && progress < 100)}
+              className="rounded-full text-white bg-[#1B8817] hover:bg-green-800 font-medium px-5 cursor-pointer disabled:bg-green-300 disabled:cursor-not-allowed h-10"
+            >
+              {mutation.isPending ? 'Publishing...' : 'Publish'}
+            </button>
+            {mutation.isError && (
+              <span className="text-xs">{mutation.error.message}</span>
+            )}
+          </div>
         </div>
         <input
           className="text-4xl font-semibold font-[#B3B2B0] outline-none mask-linear-from-neutral-950"

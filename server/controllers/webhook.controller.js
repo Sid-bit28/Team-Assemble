@@ -20,6 +20,9 @@ const clerkWebHook = async (req, res) => {
     });
   }
 
+  console.log(event.type);
+  console.log(event.data);
+
   // Webhooks related to creation of user.
   if (event.type === 'user.created') {
     const newUser = new userModel({
@@ -27,8 +30,10 @@ const clerkWebHook = async (req, res) => {
       username:
         event.data.username || event.data.email_addresses[0].email_address,
       email: event.data.email_addresses[0].email_address,
-      img: event.data.profile_img_url,
+      img: event.data.profile_image_url,
     });
+
+    console.log(newUser);
 
     await newUser.save();
   }

@@ -8,23 +8,17 @@ import PostList from '../components/PostList';
 const HomePage = () => {
   return (
     <div className="mt-4 flex flex-col gap-4">
-      {/* Breadcrumbs */}
-      <div className="flex gap-4">
-        <Link to="/">Home</Link>
-        <span>|</span>
-        <span className="text-indigo-800">Pictures and Memories</span>
-      </div>
       {/* Introduction */}
       <div className="flex items-center justify-between">
         {/* titles */}
         <div className="mx-2">
-          <h1 className="text-gray-800 text-2xl md:text-4xl lg:text-5xl font-bold">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          <h1 className="text-gray-800 text-5xl md:text-7xl lg:text-8xl font-bold font-[Georgia]">
+            Human
+            <br />
+            Stories & Ideas
           </h1>
-          <p className="mt-8 text-md md:text-xl">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt
-            repellat repellendus accusamus tenetur similique dicta possimus
-            tempore assumenda.
+          <p className="mt-8 text-md md:text-3xl font-[Georgia]">
+            A place to read, write, and deepen your understanding
           </p>
         </div>
         {/* animated button */}

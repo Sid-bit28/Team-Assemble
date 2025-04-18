@@ -20,6 +20,7 @@ const Navbar = () => {
       }
     };
     // Set initial state based on screen size
+
     handleResize();
 
     // Listen to resize events
@@ -34,9 +35,12 @@ const Navbar = () => {
   return (
     <div className="w-full h-16 md:h-20 flex items-center justify-between">
       {/* Logo */}
-      <Link to="/" className="flex items-center text-2xl font-bold">
+      <Link
+        to="/"
+        className="flex items-center text-xl font-bold font-[Georgia]"
+      >
         <Image src="/logo.png" className="w-10 h-6" alt="Logo" />
-        <span>Team Assemble</span>
+        <span className="mt-2">Team Assemble</span>
       </Link>
 
       {/* Mobile Menu */}

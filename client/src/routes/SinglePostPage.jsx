@@ -11,6 +11,7 @@ import Comments from '../components/Comments';
 
 const fetchPost = async slug => {
   const res = await axios.get(`${import.meta.env.VITE_API_URI}/posts/${slug}`);
+  console.log(res.data);
   return res.data;
 };
 

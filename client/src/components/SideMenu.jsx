@@ -1,8 +1,21 @@
 import React from 'react';
 
 import Search from './Search';
+import { useSearchParams } from 'react-router-dom';
 
 const SideMenu = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleFilterChange = e => {
+    if (searchParams.get('sort') !== e.target.value) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries(), {
+          sort: e.target.value,
+        }),
+      });
+    }
+  };
+
   return (
     <div className="px-2 h-max sticky top-8">
       <h1 className="mb-4 text-sm font-medium">Search</h1>
@@ -15,6 +28,7 @@ const SideMenu = () => {
             type="radio"
             name="sort"
             value="newest"
+            onChange={handleFilterChange}
           />
           Newest
         </label>
@@ -24,6 +38,7 @@ const SideMenu = () => {
             type="radio"
             name="sort"
             value="popular"
+            onChange={handleFilterChange}
           />
           Most Popular
         </label>
@@ -33,6 +48,7 @@ const SideMenu = () => {
             type="radio"
             name="sort"
             value="trending"
+            onChange={handleFilterChange}
           />
           Trending
         </label>
@@ -42,6 +58,7 @@ const SideMenu = () => {
             type="radio"
             name="sort"
             value="oldest"
+            onChange={handleFilterChange}
           />
           Oldest
         </label>

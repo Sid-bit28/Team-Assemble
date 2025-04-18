@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState, useCallback } from 'react';
 import useEmblaCarousel from 'embla-carousel-react';
 import { IoIosArrowForward } from 'react-icons/io';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import Autoplay from 'embla-carousel-autoplay';
 
 export const CATEGORIES = [
@@ -29,6 +29,7 @@ export const CATEGORIES = [
 ];
 
 const Categories = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true }, [Autoplay()]);
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(false);
@@ -51,6 +52,15 @@ const Categories = () => {
     updateScrollButtons();
   }, [emblaApi, updateScrollButtons]);
 
+  const handleCategoryChange = category => {
+    if (searchParams.get('cat') !== category) {
+      setSearchParams({
+        ...Object.fromEntries(searchParams.entries()),
+      cat: category,
+      });
+    }
+  };
+
   return (
     <div className="relative">
       <div
@@ -64,8 +74,8 @@ const Categories = () => {
               className="flex-1 flex items-center justify-between flex-wrap mx-2 "
             >
               <Link
-                to="/posts?cat=web-design"
                 className="bg-gray-300 rounded-full px-4 py-2 hover:bg-gray-500 hover:text-white"
+                onClick={() => handleCategoryChange(category.category)}
               >
                 {category.category}
               </Link>

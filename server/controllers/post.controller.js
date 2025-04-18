@@ -7,9 +7,62 @@ const getPosts = async (req, res) => {
   const page = parseInt(req.query.page) || 1;
   const limit = parseInt(req.query.limit) || 2;
 
+  const query = {};
+  const cat = req.query.cat;
+  const author = req.query.author;
+  const searchQuery = req.query.search;
+  const sortQuery = req.query.sort;
+  const featured = req.query.featured;
+
+  if (cat) {
+    query.category = cat;
+  }
+
+  if (searchQuery) {
+    query.title = { $regex: searchQuery, $options: 'i' };
+  }
+
+  if (author) {
+    const user = await userModel.findOne({ username: author }).select('_id');
+    if (!user) {
+      return res.status(404).json('No post found.');
+    }
+
+    query.user = user._id;
+  }
+
+  let sortObj = { createdAt: -1 };
+
+  if (sortQuery) {
+    switch (sortQuery) {
+      case 'Newest':
+        sortObj = { createdAt: -1 };
+        break;
+      case 'Oldest':
+        sortObj = { createdAt: 1 };
+        break;
+      case 'Popular':
+        sortObj = { visit: -1 };
+        break;
+      case 'Trending':
+        sortObj = { visit: -1 };
+        query.createdAt = {
+          $gte: new Date(new Date().getTime() - 7 * 24 * 60 * 1000),
+        };
+        break;
+      default:
+        break;
+    }
+  }
+
+  if (featured) {
+    query.isFeatured = true;
+  }
+
   const posts = await postModel
-    .find()
+    .find(query)
     .populate('user', 'username')
+    .sort(sortObj)
     .limit(limit)
     .skip((page - 1) * limit);
 
